@@ -5,9 +5,16 @@ from django.urls import path
 
 from .schema import swagger_urlpatterns
 
+from django.conf.urls.i18n import i18n_patterns
+
+
 urlpatterns = [
     path("admin/", admin.site.urls),
 ]
+
+urlpatterns = [
+    *i18n_patterns(*urlpatterns, prefix_default_language=False),
+    ]
 
 urlpatterns += swagger_urlpatterns
 
