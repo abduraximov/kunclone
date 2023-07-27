@@ -44,7 +44,7 @@ class Post(BaseModel):
     tag = models.ManyToManyField("posts.Tag", related_name="post", verbose_name=_("Tags"))
     is_recommend = models.BooleanField(default=False)
     is_active = models.BooleanField(default=False)
-    views = models.IntegerField()
+    views = models.IntegerField(default=0)
 
     def save(self, *args, **kwargs):
         if not self.slug:
@@ -61,7 +61,7 @@ class Image(BaseModel):
     post = models.ForeignKey("posts.Post",
                              on_delete=models.CASCADE,
                              related_name="image",
-                             verbose_name=_("Images"))
+                             verbose_name=_("Post"))
 
     def __str__(self):
         return self.name
